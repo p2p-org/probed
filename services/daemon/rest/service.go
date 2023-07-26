@@ -129,22 +129,22 @@ func New(ctx context.Context, params ...Parameter) (*Service, error) {
 		}
 	}()
 
-	// Listen on HTTP port for certificate updates.
-	go func() {
-		log.Trace().Str("listen_address", parameters.listenAddress).Msg("Starting certificate update service")
-		server := &http.Server{
-			Addr:              ":http",
-			Handler:           certManager.HTTPHandler(nil),
-			ReadHeaderTimeout: 5 * time.Second,
-		}
-		if err := server.ListenAndServe(); err != nil {
-			log.Error().Err(err).Msg("Certificate update service stopped")
-		}
-	}()
+	// // Listen on HTTP port for certificate updates.
+	// go func() {
+	// 	log.Trace().Str("listen_address", parameters.listenAddress).Msg("Starting certificate update service")
+	// 	server := &http.Server{
+	// 		Addr:              ":http",
+	// 		Handler:           certManager.HTTPHandler(nil),
+	// 		ReadHeaderTimeout: 5 * time.Second,
+	// 	}
+	// 	if err := server.ListenAndServe(); err != nil {
+	// 		log.Error().Err(err).Msg("Certificate update service stopped")
+	// 	}
+	// }()
 
 	go func() {
 		log.Trace().Str("listen_address", parameters.listenAddress).Msg("Starting daemon")
-		if err := s.srv.ListenAndServeTLS("", ""); err != http.ErrServerClosed {
+		if err := s.srv.ListenAndServe(); err != http.ErrServerClosed {
 			log.Error().Err(err).Msg("Server shut down unexpectedly")
 		}
 	}()
