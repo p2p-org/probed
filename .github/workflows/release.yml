@@ -32,7 +32,7 @@ jobs:
     steps:
       - name: Create Release
         id: release_action
-        uses: ncipollo/release-action@v1
+        uses: ncipollo/release-action@339a81892b84b4eeb0f6e744e4574d79d0d9b8dd # v1
         with:
           name: Release ${{ needs.env_vars.outputs.release_version }}
           draft: true
@@ -44,12 +44,12 @@ jobs:
     needs: [create_release, env_vars]
     steps:
       - name: Set up Go
-        uses: actions/setup-go@v3
+        uses: actions/setup-go@be3c94b385c4f180051c996d336f57a34c397495 # v3
         with:
           go-version: ^1.19
 
       - name: Check out repository into the Go module directory
-        uses: actions/checkout@v3
+        uses: actions/checkout@a37ce9120846195fa4ece8f58b268e6043cb2f26 # v3
 
       - name: Select correct tag
         run: git checkout ${{ github.ref_name }}
@@ -63,7 +63,7 @@ jobs:
           tar zcf ${{ needs.env_vars.outputs.binary }}-${{ needs.env_vars.outputs.release_version }}-linux-amd64.tar.gz ${{ needs.env_vars.outputs.binary }}
           sha256sum ${{ needs.env_vars.outputs.binary }}-${{ needs.env_vars.outputs.release_version }}-linux-amd64.tar.gz | sed -e 's/ .*//' >${{ needs.env_vars.outputs.binary }}-${{ needs.env_vars.outputs.release_version }}-linux-amd64.tar.gz.sha256
       - name: Upload binary
-        uses: actions/upload-release-asset@v1
+        uses: actions/upload-release-asset@e8f9f06c4b078e705bd2ea027f0926603fc9b4d5 # v1
         env:
           GITHUB_TOKEN: ${{ github.token }}
         with:
@@ -73,7 +73,7 @@ jobs:
           asset_content_type: application/octet-stream
 
       - name: Upload hash
-        uses: actions/upload-release-asset@v1
+        uses: actions/upload-release-asset@e8f9f06c4b078e705bd2ea027f0926603fc9b4d5 # v1
         env:
           GITHUB_TOKEN: ${{ github.token }}
         with:
@@ -92,7 +92,7 @@ jobs:
           sha256sum ${{ needs.env_vars.outputs.binary }}-${{ needs.env_vars.outputs.release_version }}-linux-arm64.tar.gz | sed -e 's/ .*//' >${{ needs.env_vars.outputs.binary }}-${{ needs.env_vars.outputs.release_version }}-linux-arm64.tar.gz.sha256
 
       - name: Upload binary (ARM64)
-        uses: actions/upload-release-asset@v1
+        uses: actions/upload-release-asset@e8f9f06c4b078e705bd2ea027f0926603fc9b4d5 # v1
         env:
           GITHUB_TOKEN: ${{ github.token }}
         with:
@@ -102,7 +102,7 @@ jobs:
           asset_content_type: application/octet-stream
 
       - name: Upload hash (ARM64)
-        uses: actions/upload-release-asset@v1
+        uses: actions/upload-release-asset@e8f9f06c4b078e705bd2ea027f0926603fc9b4d5 # v1
         env:
           GITHUB_TOKEN: ${{ github.token }}
         with:
@@ -117,12 +117,12 @@ jobs:
     needs: [create_release, env_vars]
     steps:
       - name: Set up Go
-        uses: actions/setup-go@v3
+        uses: actions/setup-go@be3c94b385c4f180051c996d336f57a34c397495 # v3
         with:
           go-version: ^1.19
 
       - name: Check out repository into the Go module directory
-        uses: actions/checkout@v3
+        uses: actions/checkout@a37ce9120846195fa4ece8f58b268e6043cb2f26 # v3
 
       - name: Select correct tag
         run: git checkout ${{ github.ref_name }}
@@ -137,7 +137,7 @@ jobs:
           brew install coreutils
           sha256sum ${{ needs.env_vars.outputs.binary }}-${{ needs.env_vars.outputs.release_version }}-darwin-amd64.tar.gz | sed -e 's/ .*//' >${{ needs.env_vars.outputs.binary }}-${{ needs.env_vars.outputs.release_version }}-darwin-amd64.tar.gz.sha256
       - name: Upload binary
-        uses: actions/upload-release-asset@v1
+        uses: actions/upload-release-asset@e8f9f06c4b078e705bd2ea027f0926603fc9b4d5 # v1
         env:
           GITHUB_TOKEN: ${{ github.token }}
         with:
@@ -147,7 +147,7 @@ jobs:
           asset_content_type: application/octet-stream
 
       - name: Upload hash
-        uses: actions/upload-release-asset@v1
+        uses: actions/upload-release-asset@e8f9f06c4b078e705bd2ea027f0926603fc9b4d5 # v1
         env:
           GITHUB_TOKEN: ${{ github.token }}
         with:
@@ -162,12 +162,12 @@ jobs:
     needs: [create_release, env_vars]
     steps:
       - name: Set up Go
-        uses: actions/setup-go@v3
+        uses: actions/setup-go@be3c94b385c4f180051c996d336f57a34c397495 # v3
         with:
           go-version: ^1.19
 
       - name: Check out repository into the Go module directory
-        uses: actions/checkout@v3
+        uses: actions/checkout@a37ce9120846195fa4ece8f58b268e6043cb2f26 # v3
 
       - name: Select correct tag
         run: git checkout ${{ github.ref_name }}
@@ -184,7 +184,7 @@ jobs:
           echo "$FileHash" > ${{ needs.env_vars.outputs.binary }}-${{ needs.env_vars.outputs.release_version }}-windows-exe-zip.sha256
 
       - name: Upload binary
-        uses: actions/upload-release-asset@v1
+        uses: actions/upload-release-asset@e8f9f06c4b078e705bd2ea027f0926603fc9b4d5 # v1
         env:
           GITHUB_TOKEN: ${{ github.token }}
         with:
@@ -194,7 +194,7 @@ jobs:
           asset_content_type: application/octet-stream
 
       - name: Upload hash
-        uses: actions/upload-release-asset@v1
+        uses: actions/upload-release-asset@e8f9f06c4b078e705bd2ea027f0926603fc9b4d5 # v1
         env:
           GITHUB_TOKEN: ${{ github.token }}
         with:
