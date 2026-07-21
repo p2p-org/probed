@@ -5,7 +5,7 @@ go 1.18
 require (
 	github.com/attestantio/go-eth2-client v0.15.1
 	github.com/gin-gonic/gin v1.8.2
-	github.com/gorilla/mux v1.8.0
+	github.com/gorilla/mux v1.8.1
 	github.com/jackc/pgtype v1.13.0
 	github.com/jackc/pgx/v4 v4.17.2
 	github.com/mitchellh/go-homedir v1.1.0
