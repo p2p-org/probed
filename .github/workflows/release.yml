@@ -6,6 +6,9 @@ on:
     - 'v*'
     - 't*'
 
+permissions:
+  contents: write # GitHub release
+
 jobs:
   # Set variables that will be available to all builds.
   env_vars:
